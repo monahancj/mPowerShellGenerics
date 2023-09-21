@@ -1,0 +1,7 @@
+20190131 - First build of module from functions that are ready.
+  Convert-CSVtoHashTable.ps1
+  Get-mRecordFromArray.ps1
+  Get-Now.ps1
+  Get-Synopsis.ps1
+
+20190106 - Added repository to GHE.

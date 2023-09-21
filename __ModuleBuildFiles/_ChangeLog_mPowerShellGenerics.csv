@@ -1,0 +1,26 @@
+Date,Version,Type,Cmdlet,Headline,Notes
+5/21/2031,2031.5.21.0,0_Security,name,In case of vulnerabilities,Reference info.
+5/21/2031,2031.5.21.0,1_Removed,name,For now removed features,Reference info.
+5/21/2031,2031.5.21.0,2_Fixed,name,For any bug fixes,Reference info.
+5/21/2031,2031.5.21.0,3_Changed,name,For changes in existing functionality,Reference info.
+5/21/2031,2031.5.21.0,4_Added,name,For new features,Reference info.
+5/21/2031,2031.5.21.0,5_Deprecated,name,For soon-to-be removed features,Reference info.
+1/18/2023,2023.01.18.0,3_Changed,Module,Updated to have the correct version format and directory management,
+11/2/2022,2022.11.02.0,3_Changed,New-mTranscript.ps1,General cleanup. Improved some code logic and output messages.  Updated TODOs.,
+6/28/2022,2022.11.02.0,3_Changed,Get-mNow,Renamed from Get-Now,
+6/28/2022,2022.11.02.0,3_Changed,Get-mSynopsis,Renamed from Get-Synopsis,
+6/28/2022,2022.11.02.0,2_Fixed,New-mTranscript.ps1,Cleaned up old code.  Improved error and logging output.,
+8/23/2021,2021.08.23.0,4_Added,Export-PSCredential.ps1,Initial add - Split out from Hals_PSCredentials.ps1,
+8/23/2021,2021.08.23.0,4_Added,Import-PSCredential.ps1,Initial add - Split out from Hals_PSCredentials.ps1,
+8/23/2021,2021.08.23.0,4_Added,New-mTranscript.ps1,Added.  Replaced Start-mTranscript.ps1 to use the proper verb.,
+8/23/2021,2021.08.23.0,1_Removed,Start-mTranscript.ps1,Removed.  Replace with New-mTranscript.ps1 to use the proper verb.,
+8/23/2021,2021.08.23.0,4_Added,Test-mIsDateTime.ps1,Initial add,
+8/23/2021,2021.08.23.0,4_Added,Test-mIsDriveLetterMapped.ps1,Initial add,
+1/31/2019,2019.01.31.0,4_Added,Convert-CSVtoHashTable.ps1,Does what it says,
+1/31/2019,2019.01.31.0,4_Added,Get-mRecordFromArray.ps1,Does what it says,
+1/31/2019,2019.01.31.0,4_Added,Get-Now.ps1,"Outputs string date formatted ""YYYYMMDD_HHMMSS""",
+1/31/2019,2019.01.31.0,4_Added,Get-Synopsis.ps1,Returns a briefer version of a function's comment based help section SYNOPSIS,
+5/1/2023,2023.05.01.0,4_Added,Get-mDateYMD.ps1,"Initial add - Returns ""2023-05-01"" format.",
+5/1/2023,2023.05.01.0,2_Fixed,Test-mIsModuleLoaded.ps1,Replaced Get-Date with Get-mNow.  Updated output messages.,
+7/24/2023,2023.07.24,4_Added,Get-mDateForLogEntry.ps1,"Initial add.  Returns a date/time in the format ""2023-05-17 13:50:32"".",
+7/24/2023,2023.07.24,3_Changed,Get-mSynopsis.ps1,Updated to output Markdown table format.,
