@@ -1,26 +1,49 @@
-Date,Version,Type,Cmdlet,Headline,Notes
-5/21/2031,2031.5.21.0,0_Security,name,In case of vulnerabilities,Reference info.
-5/21/2031,2031.5.21.0,1_Removed,name,For now removed features,Reference info.
-5/21/2031,2031.5.21.0,2_Fixed,name,For any bug fixes,Reference info.
-5/21/2031,2031.5.21.0,3_Changed,name,For changes in existing functionality,Reference info.
-5/21/2031,2031.5.21.0,4_Added,name,For new features,Reference info.
-5/21/2031,2031.5.21.0,5_Deprecated,name,For soon-to-be removed features,Reference info.
-1/18/2023,2023.01.18.0,3_Changed,Module,Updated to have the correct version format and directory management,
-11/2/2022,2022.11.02.0,3_Changed,New-mTranscript.ps1,General cleanup. Improved some code logic and output messages.  Updated TODOs.,
-6/28/2022,2022.11.02.0,3_Changed,Get-mNow,Renamed from Get-Now,
-6/28/2022,2022.11.02.0,3_Changed,Get-mSynopsis,Renamed from Get-Synopsis,
-6/28/2022,2022.11.02.0,2_Fixed,New-mTranscript.ps1,Cleaned up old code.  Improved error and logging output.,
-8/23/2021,2021.08.23.0,4_Added,Export-PSCredential.ps1,Initial add - Split out from Hals_PSCredentials.ps1,
-8/23/2021,2021.08.23.0,4_Added,Import-PSCredential.ps1,Initial add - Split out from Hals_PSCredentials.ps1,
-8/23/2021,2021.08.23.0,4_Added,New-mTranscript.ps1,Added.  Replaced Start-mTranscript.ps1 to use the proper verb.,
-8/23/2021,2021.08.23.0,1_Removed,Start-mTranscript.ps1,Removed.  Replace with New-mTranscript.ps1 to use the proper verb.,
-8/23/2021,2021.08.23.0,4_Added,Test-mIsDateTime.ps1,Initial add,
-8/23/2021,2021.08.23.0,4_Added,Test-mIsDriveLetterMapped.ps1,Initial add,
-1/31/2019,2019.01.31.0,4_Added,Convert-CSVtoHashTable.ps1,Does what it says,
-1/31/2019,2019.01.31.0,4_Added,Get-mRecordFromArray.ps1,Does what it says,
-1/31/2019,2019.01.31.0,4_Added,Get-Now.ps1,"Outputs string date formatted ""YYYYMMDD_HHMMSS""",
-1/31/2019,2019.01.31.0,4_Added,Get-Synopsis.ps1,Returns a briefer version of a function's comment based help section SYNOPSIS,
-5/1/2023,2023.05.01.0,4_Added,Get-mDateYMD.ps1,"Initial add - Returns ""2023-05-01"" format.",
-5/1/2023,2023.05.01.0,2_Fixed,Test-mIsModuleLoaded.ps1,Replaced Get-Date with Get-mNow.  Updated output messages.,
-7/24/2023,2023.07.24,4_Added,Get-mDateForLogEntry.ps1,"Initial add.  Returns a date/time in the format ""2023-05-17 13:50:32"".",
-7/24/2023,2023.07.24,3_Changed,Get-mSynopsis.ps1,Updated to output Markdown table format.,
+Version,Cmdlet,Type,Date,Headline,Notes
+1901.01.01.0,name,0_Security,5/21/2031,Vulnerabilities,Reference info.
+1901.01.01.0,name,1_Removed,5/21/2031,For removed features or functions,Reference info.
+1901.01.01.0,name,2_Fixed,5/21/2031,For bug fixes,Reference info.
+1901.01.01.0,name,3_Changed,5/21/2031,For changes in existing functionality,Reference info.
+1901.01.01.0,name,4_Added,5/21/2031,For new features,Reference info.
+1901.01.01.0,name,5_Deprecated,5/21/2031,For soon-to-be removed features,Reference info.
+1901.01.01.0,name,6_Cosmetic,1/1/1901,Anything that is useful or might be noticed by a user but doesn't change how the code works.  Improving the output or the help text are examples.,Reference info.
+2019.01.31.0,Convert-CSVtoHashTable,4_Added,1/31/2019,Does what it says,
+2019.01.31.0,Get-mRecordFromArray,4_Added,1/31/2019,Does what it says,
+2019.01.31.0,Get-Now,4_Added,1/31/2019,"Outputs string date formatted ""YYYYMMDD_HHMMSS""",
+2019.01.31.0,Get-Synopsis,4_Added,1/31/2019,Returns a briefer version of a function's comment based help section SYNOPSIS,
+2021.08.23.0,Export-PSCredential,4_Added,8/23/2021,Initial add - Split out from Hals_PSCredentials.ps1,
+2021.08.23.0,Import-PSCredential,4_Added,8/23/2021,Initial add - Split out from Hals_PSCredentials.ps1,
+2021.08.23.0,New-mTranscript,4_Added,8/23/2021,Added.  Replaced Start-mTranscript.ps1 to use the proper verb.,
+2021.08.23.0,Start-mTranscript,1_Removed,8/23/2021,Removed.  Replace with New-mTranscript.ps1 to use the proper verb.,
+2021.08.23.0,Test-mIsDateTime,4_Added,8/23/2021,Initial add,
+2021.08.23.0,Test-mIsDriveLetterMapped,4_Added,8/23/2021,Initial add,
+2022.11.02.0,Get-mNow,3_Changed,6/28/2022,Renamed from Get-Now,
+2022.11.02.0,Get-mSynopsis,3_Changed,6/28/2022,Renamed from Get-Synopsis,
+2022.11.02.0,New-mTranscript,2_Fixed,6/28/2022,Cleaned up old code.  Improved error and logging output.,
+2022.11.02.0,New-mTranscript,3_Changed,11/2/2022,General cleanup. Improved some code logic and output messages.  Updated TODOs.,
+2023.01.18.0,Module,3_Changed,1/18/2023,Updated to have the correct version format and directory management,
+2023.05.01.0,Get-mDateYMD,4_Added,5/1/2023,"Initial add - Returns ""2023-05-01"" format.",
+2023.05.01.0,Test-mIsModuleLoaded,2_Fixed,5/1/2023,Replaced Get-Date with Get-mNow.  Updated output messages.,
+2023.07.24,Get-mDateForLogEntry,4_Added,7/24/2023,"Initial add.  Returns a date/time in the format ""2023-05-17 13:50:32"".",
+2023.07.24,Get-mSynopsis,3_Changed,7/24/2023,Updated to output Markdown table format.,
+2023.10.17,Test-mCSVForEmptyCell,4_Added,9/20/2023,"Initial add.  Will scan a CSV file for empty cells.  Can be used for any CSV, but was written as an additional test for Test-mVMFromCSVDataFile.",
+2023.10.17,New-mTranscript,3_Changed,9/20/2023,Changed so that the only output from the function is the return statement.  Also some housekeeping.,
+2024.05.01,Test-mIsModuleLoaded,6_Cosmetic,12/20/2023,Fixed error message format to match the standard.,
+2024.05.01,Get-mTenableApiCallResult,1_Removed,5/1/2024,Removed.  Tenable no longer used.,
+2024.05.01,Test-mIsValidIPv4Address,4_Added,5/1/2024,Initial add.,
+2026.03.03,Get-mDateForFileName,4_Added,6/20/2024,Initial add.,
+2026.03.03,Export-PSCredential,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Import-PSCredential,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Convert-CSVtoHashTable,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mCurrentLine,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mDateForFileName,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mDateForLogEntry,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mDateYMD,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mNow,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mRecordFromArray,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Get-mSynopsis,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,New-mTranscript,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Test-mCSVForEmptyCell,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Test-mIsDateTime,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Test-mIsDriveLetterMapped,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Test-mIsModuleLoaded,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,
+2026.03.03,Test-mIsValidIPv4Address,3_Changed,2/25/2026,Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.,

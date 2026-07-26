@@ -1,0 +1,7 @@
+
+Date     Version      Type      Cmdlet                    Headline                                                                                        Notes                          
+----     -------      ----      ------                    --------                                                                                        -----                          
+3/2/2021 2021.03.04.0 4_Added   Get-mCurrentLine          Moved from the mWindowsGeneral module.  Is not specific to managing a Windows computer.
+3/2/2021 2021.03.04.0 4_Added   Get-Now.ps1               Moved from the mWindowsGeneral module.  Is not specific to managing a Windows computer.
+3/2/2021 2021.03.04.0 4_Added   Start-mTranscript.ps1     Moved from the mWindowsGeneral module.  Is not specific to managing a Windows computer.
+3/2/2021 2021.03.04.0 4_Added   Test-mIsModuleLoaded.ps1  Moved from the mWindowsGeneral module.  Is not specific to managing a Windows computer.

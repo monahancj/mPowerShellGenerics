@@ -1,0 +1,6 @@
+
+Version    Cmdlet                Type      Headline
+-------    ------                ----      --------
+2023.10.17 Test-mCSVForEmptyCell 4_Added   Initial add.  Will scan a CSV file for empty cells.  Can be used for any CSV, but was written as an additional test for Test-mVMFromCSVDataFile.
+2023.10.17 New-mTranscript.ps1   3_Changed Changed so that the only output from the function is the return statement.  Also some housekeeping.
+

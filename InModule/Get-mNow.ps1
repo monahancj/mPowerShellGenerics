@@ -1,5 +1,5 @@
-﻿Function Get-mNow {
-<#
+function Get-mNow {
+	<#
     .SYNOPSIS
         Returns and ISO 8601 standard machine friendly string formatted date/time with UTC offset.
 
@@ -14,13 +14,13 @@
 		System.String
 
 	.LINK
-		https://github.com/monster-next/mPowerShellGenerics
+		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Get-mNow.ps1
 
 	.NOTES
         It's been floating around in various scripts/programs for years as needed as a one line function declaration and never changed.  Finally put it into a file and module.
 
 		Created by:   	cmonahan
-		Organization: 	Monster Worldwide, GTI
+		Organization: 	companyname
 
 		Recent Comment History
 		----------------------
@@ -28,7 +28,7 @@
 		2017-06-02 cmonahan - Finally put it into a file and module.
 
 #>
-	
-	(get-date -uformat %Y-%m-%d) + "T" + (get-date -uformat %H:%M:%S%Z) + ":00"
+
+	(Get-Date -uformat %Y-%m-%d) + "T" + (Get-Date -uformat %H:%M:%S%Z) + ":00"
 
 } # end function

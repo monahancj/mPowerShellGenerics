@@ -1,0 +1,21 @@
+
+Version    Cmdlet                    Type      Headline
+-------    ------                    ----      --------
+2026.03.03 Get-mDateForFileName      4_Added   Initial add.
+2026.03.03 Export-PSCredential       3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Import-PSCredential       3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Convert-CSVtoHashTable    3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mCurrentLine          3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mDateForFileName      3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mDateForLogEntry      3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mDateYMD              3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mNow                  3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mRecordFromArray      3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Get-mSynopsis             3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 New-mTranscript           3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Test-mCSVForEmptyCell     3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Test-mIsDateTime          3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Test-mIsDriveLetterMapped 3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Test-mIsModuleLoaded      3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+2026.03.03 Test-mIsValidIPv4Address  3_Changed Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+

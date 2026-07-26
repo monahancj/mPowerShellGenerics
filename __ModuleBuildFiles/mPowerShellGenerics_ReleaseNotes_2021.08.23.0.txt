@@ -1,0 +1,10 @@
+
+Date      Version      Type      Cmdlet                        Headline                                                           Notes
+----      -------      ----      ------                        --------                                                           -----
+8/23/2021 2021.08.23.0 1_Removed Start-mTranscript.ps1         Removed.  Replace with New-mTranscript.ps1 to use the proper verb. 
+8/23/2021 2021.08.23.0 4_Added   New-mTranscript.ps1           Added.  Replaced Start-mTranscript.ps1 to use the proper verb.     
+8/23/2021 2021.08.23.0 4_Added   Export-PSCredential.ps1       Initial add - Split out from Hals_PSCredentials.ps1                
+8/23/2021 2021.08.23.0 4_Added   Import-PSCredential.ps1       Initial add - Split out from Hals_PSCredentials.ps1                
+8/23/2021 2021.08.23.0 4_Added   Test-mIsDriveLetterMapped.ps1 Initial add                                                        
+8/23/2021 2021.08.23.0 4_Added   Test-mIsDateTime.ps1          Initial add                                                        
+

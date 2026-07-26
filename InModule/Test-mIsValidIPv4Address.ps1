@@ -1,38 +1,51 @@
-function Get-mDateYMD {
-
+function Test-mIsValidIPv4Address {
 	<#
-	.SYNOPSIS
-		Returns the date as a string in YYYY-MM-DD format.
+    .SYNOPSIS
+        Tests if a string matches the IPv4 format and returns true or false.
 
     .DESCRIPTION
-		See the synopsis
+        Uses a regular expression to validate the format of an IPv4 address string.
+
+    .PARAMETER IPv4Address
+        The IPv4 address test.  It will be cast to type [System.String]
 
     .EXAMPLE
-		PS> Get-mDateYMD
-		2023-03-31
+        PS> Test-mIsValidIPv4Address -IPv4Address 192.168.110.176
+		True
+
+    .EXAMPLE
+		PS> "192.168.110.376" | Test-mIsValidIPv4Address
+		False
 
     .INPUTS
-		None
+        System.String
+		The string to test as an IPv4 address.
 
     .OUTPUTS
-		System.String
+        System.Boolean
+		Returns $true if valid, otherwise $false.
 
     .NOTES
-		Original Author: Christopher Monahan, companyname
+        Source article: https://powershell.one/code/1.html
+
+		Created by:   	Christopher Monahan
+		Organization: 	companyname
 
 	.LINK
-		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Get-mDateYMD.ps1
+		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Test-mIsValidIPv4Address.ps1
 
 #>
 
 	<# Comment History
 	2026-02-25 cmonahan - Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
-	2023-03-31 cmonahan - Initial add
 #>
 
-	[OutputType([System.String])]
-	[cmdletbinding()]
-	param ()
+	[OutputType([System.Boolean])]
+	[cmdletbinding(SupportsShouldProcess = $false)]
+	param (
+		[Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
+		[System.String]$IPv4Address
+	)
 
 	begin {
 		# Code to be executed once BEFORE the pipeline is processed goes here.
@@ -51,31 +64,39 @@ function Get-mDateYMD {
 
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function started."
 
-		# Test for required functions that aren't in required modules.  Remove this section if it's not needed.
+		# Test for required functions that aren't in required modules.
 		$FunctionList = "Test-mIsModuleLoaded", "Get-mCurrentLine", "Get-mNow"
 		$FunctionList | ForEach-Object {
 			if (Test-Path -Path function:\"$($_)") { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is loaded in the session." }
 			else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is not loaded in the session." }
 		}
 
-		# Test for required modules.  Internal support modules and vendor specific technology modules in addition to the builtin Microsoft PowerShell modules.  Remove this section if it's not needed.
+		# Test for required modules.
 		$ModuleList = "mPowerShellGenerics"
 		$ModuleList | ForEach-Object {
 			if (Test-mIsModuleLoaded -Name $_) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Module $($_) is loaded in the session." }
 			else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Module $($_) is not loaded in the session." }
 		}
 
+		$IPv4Pattern = '^((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Begin block end"
 
-	} # end of the begin block
+	} # end begin block
 
 	process {
 		# Code to be executed against every object in the pipeline goes here.
 
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block start"
 
-		# Do the work
-		return (Get-Date -Uformat %Y-%m-%d)
+		if ($IPv4Address -match $IPv4Pattern) {
+			Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - IPv4 Address is valid."
+			$true
+		}
+		else {
+			Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - IPv4 Address is NOT valid."
+			$false
+		}
 
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block end"
 
@@ -85,8 +106,8 @@ function Get-mDateYMD {
 		# Code to be executed once AFTER the pipeline is processed goes here.  Disconnect server connections, remove variables, reset the transcript file if necessary, and any other cleanup.
 
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - End block start"
-		# When testing comment out "-ErrorAction SilentlyContinue".  This will help find typos, unused variables, and other problems.
-		Remove-Variable -Name ModuleList, FunctionList -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
+
+		Remove-Variable -Name IPv4Address, IPv4Pattern, FunctionList, ModuleList -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
 
 		[System.GC]::Collect() # Memory cleanup
 		$ErrorActionPreference = $EAPsaved
@@ -96,4 +117,4 @@ function Get-mDateYMD {
 
 	} #end of the end block
 
-} # end of the function Get-mDateYMD
+} # end function

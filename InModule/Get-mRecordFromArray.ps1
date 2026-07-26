@@ -1,6 +1,6 @@
-﻿function Get-mRecordFromArray {
+function Get-mRecordFromArray {
 
-<#
+	<#
     .SYNOPSIS
         A brief description of the function or script. This keyword can be used
         only once in each topic.
@@ -9,12 +9,24 @@
         A detailed description of the function or script. This keyword can be
         used only once in each topic.
 
-    .PARAMETER  <Parameter-Name>
+    .PARAMETER SearchData
+        The description of a parameter. Add a .PARAMETER keyword for
+        each parameter in the function or script syntax.
+
+    .PARAMETER SearchColumn
+        The description of a parameter. Add a .PARAMETER keyword for
+        each parameter in the function or script syntax.
+
+    .PARAMETER SearchItem
+        The description of a parameter. Add a .PARAMETER keyword for
+        each parameter in the function or script syntax.
+
+    .PARAMETER ResultsColumn
         The description of a parameter. Add a .PARAMETER keyword for
         each parameter in the function or script syntax.
 
     .EXAMPLE
-        Get-mRecordFromArray -SearchData $pinv -SearchColumn "Serial Number" -SearchItems $data -ResultsColumn "Serial Number"
+        Get-mRecordFromArray -SearchData $pinv -SearchColumn "Serial Number" -SearchItem $data -ResultsColumn "Serial Number"
 
     .INPUTS
         The Microsoft .NET Framework types of objects that can be piped to the
@@ -28,32 +40,17 @@
     .NOTES
         Additional information about the function or script.
 
-		Created by:   	cmonahan
-		Organization: 	Monster Worldwide, GTI
-
-		Recent Comment History
-		----------------------
-		YYYMMDD username- 3rd comment.
-		YYYMMDD username- 2nd comment.
-		20161205 cmonahan- Initial release.
+		Original Author: cmonahan, companyname
 
 	.LINK
-        The name of a related topic. The value appears on the line below
-        the .LINK keyword and must be preceded by a comment symbol (#) or
-        included in the comment block.
-
-        Repeat the .LINK keyword for each related topic.
-
-        This content appears in the Related Links section of the help topic.
-
-        The Link keyword content can also include a Uniform Resource Identifier
-        (URI) to an online version of the same help topic. The online version
-        opens when you use the Online parameter of Get-Help. The URI must begin
-        with "http" or "https".
+		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Get-mRecordFromArray.ps1
 
 #>
 
-	#ToDo: Fill out comment based help
+	<# Comment History
+	2026-02-25 cmonahan - Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+	2016-12-05 cmonahan - Initial release.
+#>
 
 	[cmdletbinding(SupportsShouldProcess = $true)]
 	param (
@@ -68,26 +65,65 @@
 	)
 
 	begin {
+		# Code to be executed once BEFORE the pipeline is processed goes here.
 
-		# code to be executed once BEFORE the pipeline is processed goes here
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function started."
 
-	} # end begin block
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Begin block start"
+		$EAPsaved = $ErrorActionPreference
+
+		# The functions Get-mNow and Get-mCurrentLine are used in every script and function.
+		if (Test-Path -Path function:\Get-mNow) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function Get-mNow is loaded in the session." }
+		else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - The function Get-mNow is not loaded in the session." }
+
+		if (Test-Path -Path function:\Get-mCurrentLine) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function Get-mCurrentLine is loaded in the session." }
+		else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - The function Get-mCurrentLine is not loaded in the session." }
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function started."
+
+		# Test for required functions that aren't in required modules.  Remove this section if it's not needed.
+		$FunctionList = "Test-mIsModuleLoaded", "Get-mCurrentLine", "Get-mNow"
+		$FunctionList | ForEach-Object {
+			if (Test-Path -Path function:\"$($_)") { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is loaded in the session." }
+			else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is not loaded in the session." }
+		}
+
+		# Test for required modules.  Internal support modules and vendor specific technology modules in addition to the builtin Microsoft PowerShell modules.  Remove this section if it's not needed.
+		$ModuleList = "mPowerShellGenerics"
+		$ModuleList | ForEach-Object {
+			if (Test-mIsModuleLoaded -Name $_) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Module $($_) is loaded in the session." }
+			else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Module $($_) is not loaded in the session." }
+		}
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Begin block end"
+
+	} # end of the begin block
 
 	process {
+		# Code to be executed against every object in the pipeline goes here.
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block start"
 
 		#foreach ($Record in ($SearchItem)) { if ($SearchData.$SearchColumn.Contains($Record)) { $SearchData | Where-Object { $_.$SearchColumn -eq $Record } } }
 		if ($SearchData.$SearchColumn.Contains($SearchItem)) { ($SearchData | Where-Object { $_.$SearchColumn -eq $SearchItem }).$ResultsColumn }
 
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block end"
+
 	} #end of the process block
 
 	end {
-		# code to be executed once AFTER the pipeline is processed goes here
-		
-		Remove-Variable SearchData, SearchColumn, SearchItem, ResultsColumn -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
+		# Code to be executed once AFTER the pipeline is processed goes here.  Disconnect server connections, remove variables, reset the transcript file if necessary, and any other cleanup.
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - End block start"
+
+		Remove-Variable -Name SearchData, SearchColumn, SearchItem, ResultsColumn, ModuleList, FunctionList -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
+
 		[System.GC]::Collect() # Memory cleanup
+		$ErrorActionPreference = $EAPsaved
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - End block end"
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function ended - $($MyInvocation.InvocationName)"
 
 	} #end of the end block
 
-#>
-
-} # end function
+} # end of the function Get-mRecordFromArray

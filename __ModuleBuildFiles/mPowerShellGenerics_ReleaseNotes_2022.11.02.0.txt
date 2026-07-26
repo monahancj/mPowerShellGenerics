@@ -1,0 +1,8 @@
+
+Date      Version      Type      Cmdlet              Headline                                                                       Notes
+----      -------      ----      ------              --------                                                                       -----
+6/28/2022 2022.11.02.0 2_Fixed   New-mTranscript.ps1 Cleaned up old code.  Improved error and logging output.                       
+6/28/2022 2022.11.02.0 3_Changed Get-mNow            Renamed from Get-Now                                                           
+6/28/2022 2022.11.02.0 3_Changed Get-mSynopsis       Renamed from Get-Synopsis                                                      
+11/2/2022 2022.11.02.0 3_Changed New-mTranscript.ps1 General cleanup. Improved some code logic and output messages.  Updated TODOs. 
+

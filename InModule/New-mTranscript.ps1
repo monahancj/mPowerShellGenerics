@@ -1,6 +1,6 @@
-﻿function New-mTranscript {
-	
-<#
+function New-mTranscript {
+
+	<#
     .SYNOPSIS
         A wrapper around Start-Transcript with a default path to the "My Documents" folder and an automatic date/time stamp on the transcript file.
 
@@ -17,17 +17,14 @@
         If the path of the Directory parameter doesn't exist then attempt to create the directory.  Otherwise exit.
 
     .EXAMPLE
-        A sample command that uses the function or script, optionally followed
-        by sample output and a description. Repeat this keyword for each example.
+        New-mTranscript -ScriptName "MyScript.ps1"
 
     .INPUTS
-        The Microsoft .NET Framework types of objects that can be piped to the
-        function or script. You can also include a description of the input
-        objects.
+        None
 
     .OUTPUTS
-        The .NET Framework type of the objects that the cmdlet returns. You can
-        also include a description of the returned objects.
+        System.String
+        The path to the newly created transcript file.
 
     .NOTES
         For server wide logging of any PowerShell session add this to the "All Users, All Hosts" profile.  See:
@@ -35,69 +32,113 @@
 
 		Use $TranscriptPath = (New-mTranscript) to store the path to the transcript file.
 
-		Deliberately decided not to use the begin/process/end blocks.  I didn't see any scenario where this should be used in a pipeline.
-
 		Created by:   	Christopher Monahan
-		Organization: 	Monster Worldwide, GTI
+		Organization: 	companyname
+
+	.LINK
+		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/New-mTranscript.ps1
+
 #>
 
-	[cmdletbinding()]
+	<# Comment History
+	2026-02-25 cmonahan - Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
+#>
+
+	[OutputType([System.String])]
+	[cmdletbinding(SupportsShouldProcess = $false)]
 	param (
 		[Parameter(Position = 0, Mandatory = $false, ValueFromPipeline = $false)]
-		$ScriptName = "",
+		[string]$ScriptName = "",
+
 		[Parameter(Position = 1, Mandatory = $false, ValueFromPipeline = $false)]
-		$Directory = "$($Env:OneDrive)\Logs\Transcripts"
+		[string]$Directory = "$($Env:OneDrive)\Logs\Transcripts",
+
+		[Parameter(Position = 2, Mandatory = $false, ValueFromPipeline = $false)]
+		[switch]$Force
 	)
 
-	#TODO: Replacing this cmdlet name with Start-mTranscript.  "Start" was the appropriate verb, which I should have realized because the cmdlet this is a wrapper for is "Start-Transcript".  Adding Suspend-mTranscript, Resume-mTranscript, and Stop-mTranscript.
-	#TODO: Add Write-Verbose lines
-	#TODO: Handle pausing and restarting an already running transcript
-	#TODO: Add required module logic
-	#TODO: Add calling function/cmdlet/executable name to the transcript file name if it exists.  Useful for scheduled tasks.
+	begin {
+		# Code to be executed once BEFORE the pipeline is processed goes here.
 
-	Import-Module -Name Microsoft.PowerShell.Host
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function started."
 
-	Write-Verbose "$(Get-Date)- $($MyInvocation.MyCommand.Name) Line $(Get-mCurrentLine) *** Start of the function"
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Begin block start"
+		$EAPsaved = $ErrorActionPreference
 
-	#TODO: Make variable names accurate.
-	$logname = Get-Date -Format "yyyy-MM-dd"
-	$uname = (get-item env:USERNAME).Value
-	if ($ScriptName -ne "") { $ScriptName = ($ScriptName -split ("\."))[0] }
-	else { $ScriptName = "CommandLine_$(Get-Random -Minimum 100000 -Maximum 999999)" } # Append a 6 digit random number to the script name.  Accounts for when multiple sessions are open on one computer so $MyInvocation.MyCommand.Name will be empty.
+		# The functions Get-mNow and Get-mCurrentLine are used in every script and function.
+		if (Test-Path -Path function:\Get-mNow) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function Get-mNow is loaded in the session." }
+		else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - The function Get-mNow is not loaded in the session." }
 
-	$Directory = $Directory.Trim()
-	$Directory = $Directory.TrimEnd('\')
+		if (Test-Path -Path function:\Get-mCurrentLine) { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function Get-mCurrentLine is loaded in the session." }
+		else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - The function Get-mCurrentLine is not loaded in the session." }
 
-	#TODO: Test if D: exists (preferred location), and if it doesn't exist put the directory on the C: drive.
-	if (-not (Test-Path $Directory) -and ($Force)) { mkdir $Directory }
-	if (-not (Test-Path $Directory)) {
-		if (Test-Path D:\) {
-			$Directory = 'D:\Logs\Transcripts'
-			if (-not (Test-Path $Directory)) { mkdir $Directory }
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function started."
+
+		# Test for required functions that aren't in required modules.  Remove this section if it's not needed.
+		$FunctionList = "Test-mIsModuleLoaded", "Get-mCurrentLine", "Get-mNow"
+		$FunctionList | ForEach-Object {
+			if (Test-Path -Path function:\"$($_)") { Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is loaded in the session." }
+			else { throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function $($_) is not loaded in the session." }
 		}
-		elseif (Test-Path C:\) {
-			$Directory = 'C:\Logs\Transcripts'
-			if (-not (Test-Path $Directory)) { mkdir $Directory }
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Begin block end"
+
+	} # end of the begin block
+
+	process {
+		# Code to be executed against every object in the pipeline goes here.
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block start"
+
+		#TODO: Make variable names accurate.
+		$logname = Get-Date -Format "yyyy-MM-dd"
+		$uname = (Get-Item env:USERNAME).Value
+		if ($ScriptName -ne "") { $ScriptName = ($ScriptName -split ("\."))[0] }
+		else { $ScriptName = "CommandLine_$(Get-Random -Minimum 100000 -Maximum 999999)" } # Append a 6 digit random number to the script name.
+
+		$Directory = $Directory.Trim()
+		$Directory = $Directory.TrimEnd('\')
+
+		if (-not (Test-Path $Directory) -and ($Force)) { New-Item -ItemType Directory -Path $Directory | Out-Null }
+		if (-not (Test-Path $Directory)) {
+			if (Test-Path D:\) {
+				$Directory = 'D:\Logs\Transcripts'
+				if (-not (Test-Path $Directory)) { New-Item -ItemType Directory -Path $Directory | Out-Null }
+			}
+			elseif (Test-Path C:\) {
+				$Directory = 'C:\Logs\Transcripts'
+				if (-not (Test-Path $Directory)) { New-Item -ItemType Directory -Path $Directory | Out-Null }
+			}
 		}
-	}
-	if (Test-Path $Directory) {
-		# Build the transcript file path
-		$TranscriptPath = $Directory + '\' + $logname + "_" + $env:COMPUTERNAME + "_" + $uname + "_" + $ScriptName + "_pid" + [string]$PID + ".log"
-		Start-Transcript -Path $TranscriptPath -IncludeInvocationHeader -Append -Force
-	}
-	else {
-		#TODO: Replace with throw.
-		Write-Error "$(Get-Date)- $($MyInvocation.MyCommand.Name) Line $(Get-mCurrentLine) *** Unable to find or create the transcript directory.  Aborting."
-		break
-	}
 
-	# ===============================================
-	# Clean up
-	Remove-Variable -Name Path, Force -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
-	[System.GC]::Collect() # Memory cleanup
+		if (Test-Path $Directory) {
+			# Build the transcript file path
+			$TranscriptPath = $Directory + '\' + $logname + "_" + $env:COMPUTERNAME + "_" + $uname + "_" + $ScriptName + "_pid" + [string]$PID + ".log"
+			Start-Transcript -Path $TranscriptPath -IncludeInvocationHeader -Append -Force > $null
+			# Return the path
+			$TranscriptPath
+		}
+		else {
+			throw "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) *** Unable to find or create the transcript directory.  Aborting."
+		}
 
-	Write-Verbose "$(Get-Date)- $($MyInvocation.MyCommand.Name) Line $(Get-mCurrentLine) *** End of the function"
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block end"
 
-	# Return the path to the transcript file
-	$TranscriptPath
-} # end function
+	} #end of the process block
+
+	end {
+		# Code to be executed once AFTER the pipeline is processed goes here.  Disconnect server connections, remove variables, reset the transcript file if necessary, and any other cleanup.
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - End block start"
+
+		Remove-Variable -Name ScriptName, Directory, Force, FunctionList, ModuleList, logname, uname, TranscriptPath -ErrorAction SilentlyContinue -WhatIf:$false # Using -WhatIf:$false to suppress unnecessary messages when a calling function has -Whatif:$true enabled.
+
+		[System.GC]::Collect() # Memory cleanup
+		$ErrorActionPreference = $EAPsaved
+
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - End block end"
+		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Function ended - $($MyInvocation.InvocationName)"
+
+	} #end of the end block
+
+} # end of the function New-mTranscript

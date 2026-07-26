@@ -1,15 +1,15 @@
-function Get-mDateYMD {
+function Get-mDateForFileName {
 
 	<#
 	.SYNOPSIS
-		Returns the date as a string in YYYY-MM-DD format.
+		Returns a date in string format for general use, such as file names and log entries.
 
     .DESCRIPTION
-		See the synopsis
+		The format is "YYYY-MM-DD_HH-MM-SS".
 
     .EXAMPLE
-		PS> Get-mDateYMD
-		2023-03-31
+		PS> Get-mDateForFileName
+		2024-06-20_09-55-27
 
     .INPUTS
 		None
@@ -21,13 +21,13 @@ function Get-mDateYMD {
 		Original Author: Christopher Monahan, companyname
 
 	.LINK
-		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Get-mDateYMD.ps1
+		https://github.com/companyname-Platform-Services/mPowerShellGenerics/blob/main/InModule/Get-mDateForFileName.ps1
 
 #>
 
 	<# Comment History
 	2026-02-25 cmonahan - Updated to match the standard function template using Google Antigravity editor and Gemini 3 Pro Low.
-	2023-03-31 cmonahan - Initial add
+	2024-06-20 cmonahan - Initial add
 #>
 
 	[OutputType([System.String])]
@@ -75,7 +75,7 @@ function Get-mDateYMD {
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block start"
 
 		# Do the work
-		return (Get-Date -Uformat %Y-%m-%d)
+		return (Get-Date -UFormat "%Y-%m-%d_%H-%M-%S")
 
 		Write-Verbose -Message "$(Get-mNow)- $($MyInvocation.InvocationName) - Line $(Get-mCurrentLine) - Process block end"
 
@@ -96,4 +96,4 @@ function Get-mDateYMD {
 
 	} #end of the end block
 
-} # end of the function Get-mDateYMD
+} # end of the function Get-mDateForFileName
